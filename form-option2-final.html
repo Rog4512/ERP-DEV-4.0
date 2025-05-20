@@ -293,8 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function submitForm(event) {
+  console.log("🔁 submitForm triggered");
   event.preventDefault();
   updateSummary();
+  console.log("📊 Summary updated, preparing FormData...");
 
   const form = document.getElementById("reunionForm");
   const emailInput = document.getElementById("email");
