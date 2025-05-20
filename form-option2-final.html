@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.0.1 | Date: 2025-05-20 | ERP_3.0.0_2025-05-06 -->
+<!-- Version: 4.0.2 | Date: 2025-05-20 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -159,12 +159,17 @@
     const otherPhoneLabel = document.getElementById("otherPhoneLabel");
 
     function updateOtherPhoneLabel() {
-      if (smsOptIn.value === "Y") {
-        otherPhoneLabel.innerText = "Other Phone (Optional):";
-      } else {
-        otherPhoneLabel.innerText = "Other Phone:";
-      }
-    }
+  const smsOptIn = document.getElementById("sms_opt_in");
+  const otherPhoneLabel = document.getElementById("otherPhoneLabel");
+
+  if (!smsOptIn || !otherPhoneLabel) return; // Exit early if either is missing
+
+  if (smsOptIn.checked) {
+    otherPhoneLabel.innerText = "Other Phone (Optional):";
+  } else {
+    otherPhoneLabel.innerText = "Other Phone:";
+  }
+}
 
     updateOtherPhoneLabel();
     smsOptIn.addEventListener("change", updateOtherPhoneLabel);
