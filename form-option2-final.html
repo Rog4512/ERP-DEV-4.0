@@ -2,6 +2,7 @@
 <!-- Version: 4.1.4 | Date: 2025-05-26 -->
 <!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
 <html lang="en">
+let debugTrail = 0;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -319,18 +320,23 @@ function closeLegacyPopup() {
   if (feeField && fee) {
   feeField.value = fee;
   }
-    
-  updateSummary(); 
 
+  //Set up change listeners
   document.querySelector('[name="guest_name"]').addEventListener('input', updateSummary);
   document.querySelector('[name="legacy_fund"]').addEventListener('input', updateSummary);
-});
   
-function submitForm(event) {
+  // Now populate the values
+  updateSummary(); 
+  });
+
+  function submitForm(event) {
   console.log("🔁 submitForm triggered");
   event.preventDefault();
   updateSummary();
   console.log("📊 Summary updated, preparing FormData...");
+
+debugTrail = 338;
+document.getElementById('debug-step').innerText = debugTrail;
 
   const form = document.getElementById("reunionForm");
   const emailInput = document.getElementById("email");
@@ -340,6 +346,9 @@ function submitForm(event) {
 
   const formData = new FormData(form);
   const emailVal = emailInput.value.trim();
+
+debugTrail = 350;
+document.getElementById("debug-step").innerText = debugTrail;
 
   submitButton.disabled = true;
   submitButton.innerText = "Processing...";
@@ -352,6 +361,10 @@ function submitForm(event) {
   } else {
     emailWarning.style.display = "none";
   }
+
+debugTrail = 365;
+document.getElementById("debug-step").innerText = debugTrail;
+  
   // Explicitly append all form fields to ensure consistent delivery
   formData.append("classmate_name", form.querySelector('[name="classmate_name"]').value);
   formData.append("name_1975", form.querySelector('[name="name_1975"]').value);
@@ -385,6 +398,9 @@ function submitForm(event) {
   formData.append("event10_classmate", form.querySelector('[name="event10_classmate"]').value);
   formData.append("event10_guest", form.querySelector('[name="event10_guest"]').value);
 
+debugTrail = 401;
+document.getElementById("debug-step").innerText = debugTrail;
+
   const registrationFeeField = form.querySelector('[name="RegistrationFee"]');
   if (registrationFeeField) {
     formData.append("RegistrationFee", registrationFeeField.value);
@@ -405,6 +421,9 @@ function submitForm(event) {
   }
   
   console.log("✅ Reached fetch section, submitting data...");
+
+debugTrail = 425;
+document.getElementById("debug-step").innerText = debugTrail;
 
   fetch("https://script.google.com/macros/s/AKfycbydKZYUTqqAftv4DUQi7vj5Ic33gz3KHNGFQEJvNZuVpTfmaurBBs_IuA_WYFbOMQIC1Q/exec", {
     method: "POST",
@@ -430,6 +449,10 @@ function submitForm(event) {
 }
 </script>
 
+<div id="debugPopup" style="display:none; position:fixed; bottom:20px; right:20px; background:#fffbe6; color:#333; border:1px solid #ccc; padding:10px 15px; z-index:9999; border-radius:6px; box-shadow:0 0 6px rgba(0,0,0,0.2); font-size: 0.9em;">
+  DEBUG MODE: <span id="debug-step">N/A</span>
+</div>
+  
 </body>
 </html>
 
