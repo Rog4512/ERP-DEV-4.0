@@ -297,6 +297,11 @@ function updateSummary() {
   document.getElementById('summary-legacy').innerText = `$${legacyFund.toFixed(2)}`;
   document.getElementById('summary-total').innerText = `$${totalDue.toFixed(2)}`;
   document.getElementById('hiddenTotalDue').value = totalDue.toFixed(2);
+    // Debug Mode updates
+  document.getElementById('debug-attendees').innerText = attendees;
+  document.getElementById('debug-fee').innerText = `$${feePerPerson.toFixed(2)}`;
+  document.getElementById('debug-legacy').innerText = `$${legacyFund.toFixed(2)}`;
+  document.getElementById('debug-reunion').innerText = `$${reunionFee.toFixed
 }
 
 function showLegacyPopup() {
