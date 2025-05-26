@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.4 | Date: 2025-05-26 -->
-<!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
+<!-- Version: 4.1.6 | Date: 2025-05-26 -->
+<!-- Record current execution step and update visible debug tracker if element exists -->
 <html lang="en">
 let debugTrail = 0;
 <head>
@@ -336,7 +336,8 @@ function closeLegacyPopup() {
   console.log("📊 Summary updated, preparing FormData...");
 
 debugTrail = 338;
-document.getElementById('debug-step').innerText = debugTrail;
+const debugBox = document.getElementById("debug-step");
+if (debugBox) debugBox.innerText = debugTrail;
 
   const form = document.getElementById("reunionForm");
   const emailInput = document.getElementById("email");
@@ -346,9 +347,10 @@ document.getElementById('debug-step').innerText = debugTrail;
 
   const formData = new FormData(form);
   const emailVal = emailInput.value.trim();
-
-debugTrail = 350;
-document.getElementById("debug-step").innerText = debugTrail;
+  
+debugTrail = 351;
+const debugBox = document.getElementById("debug-step");
+if (debugBox) debugBox.innerText = debugTrail;
 
   submitButton.disabled = true;
   submitButton.innerText = "Processing...";
@@ -362,8 +364,9 @@ document.getElementById("debug-step").innerText = debugTrail;
     emailWarning.style.display = "none";
   }
 
-debugTrail = 365;
-document.getElementById("debug-step").innerText = debugTrail;
+debugTrail = 367;
+const debugBox = document.getElementById("debug-step");
+if (debugBox) debugBox.innerText = debugTrail;
   
   // Explicitly append all form fields to ensure consistent delivery
   formData.append("classmate_name", form.querySelector('[name="classmate_name"]').value);
@@ -398,8 +401,9 @@ document.getElementById("debug-step").innerText = debugTrail;
   formData.append("event10_classmate", form.querySelector('[name="event10_classmate"]').value);
   formData.append("event10_guest", form.querySelector('[name="event10_guest"]').value);
 
-debugTrail = 401;
-document.getElementById("debug-step").innerText = debugTrail;
+debugTrail = 404;
+const debugBox = document.getElementById("debug-step");
+if (debugBox) debugBox.innerText = debugTrail;
 
   const registrationFeeField = form.querySelector('[name="RegistrationFee"]');
   if (registrationFeeField) {
@@ -422,8 +426,9 @@ document.getElementById("debug-step").innerText = debugTrail;
   
   console.log("✅ Reached fetch section, submitting data...");
 
-debugTrail = 425;
-document.getElementById("debug-step").innerText = debugTrail;
+debugTrail = 429;
+const debugBox = document.getElementById("debug-step");
+if (debugBox) debugBox.innerText = debugTrail;
 
   fetch("https://script.google.com/macros/s/AKfycbydKZYUTqqAftv4DUQi7vj5Ic33gz3KHNGFQEJvNZuVpTfmaurBBs_IuA_WYFbOMQIC1Q/exec", {
     method: "POST",
