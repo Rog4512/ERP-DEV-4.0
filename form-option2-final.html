@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.3 | Date: 2025-05-26 -->
+<!-- Version: 4.1.4 | Date: 2025-05-26 -->
 <!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
 <html lang="en">
 <head>
@@ -235,6 +235,15 @@
       </label>
       <input type="number" name="legacy_fund" min="0" placeholder="$0.00" />
 
+      <div id="debug-box" style="background:#fff3cd; color:#856404; padding:12px; border:1px dashed #aaa; margin-top:20px; font-size:0.9em;">
+        <strong>DEBUG MODE:</strong><br>
+        Attendees: <span id="debug-attendees">N/A</span><br>
+        Fee Per Person: <span id="debug-fee">N/A</span><br>
+        Legacy Fund: <span id="debug-legacy">N/A</span><br>
+        Reunion Fee: <span id="debug-reunion">N/A</span><br>
+        Total Due: <span id="debug-total">N/A</span><br>
+      </div>
+    
       <div class="summary-box">
         <h4>Registration Summary</h4>
         <p><strong>Attendees:</strong> <span id="summary-attendees"></span></p>
