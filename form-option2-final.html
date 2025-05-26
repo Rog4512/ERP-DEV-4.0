@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.0 | Date: 2025-05-26 -->
+<!-- Version: 4.1.2 | Date: 2025-05-26 -->
 <!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
 <html lang="en">
 <head>
@@ -300,7 +300,12 @@ function closeLegacyPopup() {
 }
 
   document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector('[name="registration_fee"]').value = document.getElementById('currentReunionFee').value;
+  const fee = document.getElementById("currentReunionFee").value;
+  const feeField = document.querySelector('[name="registration_fee"]');
+  if (feeField && fee) {
+  feeField.value = fee;
+  }
+    
   updateSummary(); 
 
   document.querySelector('[name="guest_name"]').addEventListener('input', updateSummary);
