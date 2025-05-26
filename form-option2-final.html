@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- Version: 4.0.7 | Date: 2025-05-25 -->
+<!-- Version: 4.1.0 | Date: 2025-05-26 -->
+<!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -109,14 +110,14 @@
 </head>
 <body>
   <div class="form-container">
-    <input type="hidden" id="currentReunionFee" value="45">
-    <h1>DHS Class of 1975</h1>
-    <h2>50-Year Reunion Registration</h2>
-    <h3>Registration Option #2: Register Online, Pay by Check</h3>
+  <input type="hidden" id="currentReunionFee" value="50">
+  <h1>DHS Class of 1975</h1>
+  <h2>50-Year Reunion Registration</h2>
+  <h3>Registration Option #2: Register Online, Pay by Check</h3>
 
-    <form id="reunionForm" onsubmit="submitForm(event)">
-      <input type="hidden" name="RegistrationFee" value="">
-      <input type="hidden" name="TotalDue" id="hiddenTotalDue" value="">
+  <form id="reunionForm" onsubmit="submitForm(event)">
+    <input type="hidden" name="registration_fee" value="">
+    <input type="hidden" name="total_due" id="hiddenTotalDue" value="">
 
       <!-- Classmate Info Block -->
 <label>Classmate Name:</label><input type="text" name="classmate_name" required />
@@ -126,7 +127,7 @@
 
 <!-- Mobile & SMS Opt-in -->
 <label>Mobile Phone:</label>
-<input type="text" name="Mobile Phone" />
+<input type="text" name="mobile_phone" />
 
 <!-- SMS Opt-in with Checkbox -->
 <div style="margin-top: 12px;">
@@ -141,7 +142,7 @@
 
 <!-- Other Phone (label changes based on SMS opt-in) -->
 <label id="otherPhoneLabel">Other Phone:</label>
-<input type="text" name="Other Phone" />
+<input type="text" name="other_phone" />
 
 <!-- Email with fallback warning -->
 <label>Email Address:<br>
@@ -153,34 +154,32 @@
 <div id="emailError">Please recheck your email — something doesn’t look quite right.</div>
 
 <!-- JavaScript: Adjust "Other Phone" label if SMS = Y -->
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const smsOptIn = document.getElementById("sms_opt_in");
     const otherPhoneLabel = document.getElementById("otherPhoneLabel");
 
     function updateOtherPhoneLabel() {
-  const smsOptIn = document.getElementById("sms_opt_in");
-  const otherPhoneLabel = document.getElementById("otherPhoneLabel");
+      if (!smsOptIn || !otherPhoneLabel) return; // Exit early if either is missing
 
-  if (!smsOptIn || !otherPhoneLabel) return; // Exit early if either is missing
-
-  if (smsOptIn.checked) {
-    otherPhoneLabel.innerText = "Other Phone (Optional):";
-  } else {
-    otherPhoneLabel.innerText = "Other Phone:";
-  }
-}
+      if (smsOptIn.checked) {
+        otherPhoneLabel.innerText = "Other Phone (Optional):";
+      } else {
+        otherPhoneLabel.innerText = "Other Phone:";
+      }
+    }
 
     updateOtherPhoneLabel();
     smsOptIn.addEventListener("change", updateOtherPhoneLabel);
   });
 </script>
-      
+    
       <label>Preferred classmate name for Nametag:</label><input type="text" name="classmate_nametag" />
       <label>Preferred spouse/guest name for Nametag:</label><input type="text" name="guest_nametag" />
       <label>Notes:</label><textarea name="notes" rows="3"></textarea>
 
-      <table class="events-table">
+  <table class="events-table">
   <thead><tr><th>Event</th><th>Classmate</th><th>Guest</th></tr></thead>
   <tbody>
     <tr><td>Friday Tour</td>
@@ -192,14 +191,13 @@
     <tr><td>Football Game</td>
       <td><select name="football_game_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="football_game_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
-    <tr><td>Saturday Tour</td>
-      <td><select name="saturday_tour_classmate"><option></option><option>Y</option><option>N</option></select></td>
-      <td><select name="saturday_tour_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
     <tr><td>Saturday Breakfast</td>
       <td><select name="saturday_breakfast_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="saturday_breakfast_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
-    <!-- Golf notes -->
-    <tr><td>Saturday Golf</td>
+    <tr><td>Saturday Tour</td>
+      <td><select name="saturday_tour_classmate"><option></option><option>Y</option><option>N</option></select></td>
+      <td><select name="saturday_tour_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
+      <tr><td>Saturday Golf</td>
       <td><select name="saturday_golf_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="saturday_golf_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
     <tr>
@@ -208,10 +206,26 @@
       </td>
     </tr>   
        <div style="margin-left: 0.25px; color: #b30000; font-size: 0.9em; font-style: italic;">
-</div>
+    </div>
     <tr><td>Reunion Dinner</td>
       <td><select name="reunion_dinner_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="reunion_dinner_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
+    <tr>
+    <td colspan="3" style="color: red; font-style: italic; padding-top: 4px;">
+      * A cash bar will be available during the Saturday evening dinner. Drink responsibly and plan ahead for a safe ride home.
+    </td>
+    </tr>   
+    <div style="margin-left: 0.25px; color: #b30000; font-size: 0.9em; font-style: italic;">
+    </div>
+    <tr><td>Event 8</td>
+      <td><select name="event_8_classmate"><option></option><option>Y</option><option>N</option></select></td>
+      <td><select name="event_8_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
+    <tr><td>Event 9</td>
+      <td><select name="event_9_classmate"><option></option><option>Y</option><option>N</option></select></td>
+      <td><select name="event_9_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
+    <tr><td>Event 10</td>
+      <td><select name="event_10_classmate"><option></option><option>Y</option><option>N</option></select></td>
+      <td><select name="event_10_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
   </tbody>
 </table>
 
@@ -264,7 +278,7 @@ function isValidEmail(email) {
 function updateSummary() {
   const guestName = document.querySelector('[name="guest_name"]').value.trim();
   const legacyFund = parseFloat(document.querySelector('[name="legacy_fund"]').value) || 0;
-  const feePerPerson = parseFloat(document.querySelector('[name="RegistrationFee"]').value) || 45;
+  const feePerPerson = parseFloat(document.querySelector('[name="registration_fee"]').value) || 50;
   const attendees = guestName ? 2 : 1;
   const reunionFee = attendees * feePerPerson;
   const totalDue = reunionFee + legacyFund;
@@ -324,7 +338,9 @@ function submitForm(event) {
   formData.append("guest_name", form.querySelector('[name="guest_name"]').value);
   formData.append("mailing_address", form.querySelector('[name="mailing_address"]').value);
   formData.append("email", emailVal);
-  formData.append("phone", form.querySelector('[name="phone"]').value);
+  formData.append("mobile_phone", form.querySelector('[name="mobile_phone"]').value);
+  formData.append("sms_opt_in", form.querySelector('[name="sms_opt_in"]').value);
+  formData.append("other_phone", form.querySelector('[name="other_phone"]').value);
   formData.append("classmate_nametag", form.querySelector('[name="classmate_nametag"]').value);
   formData.append("guest_nametag", form.querySelector('[name="guest_nametag"]').value);
   formData.append("notes", form.querySelector('[name="notes"]').value);
@@ -342,6 +358,12 @@ function submitForm(event) {
   formData.append("saturday_golf_guest", form.querySelector('[name="saturday_golf_guest"]').value);
   formData.append("reunion_dinner_classmate", form.querySelector('[name="reunion_dinner_classmate"]').value);
   formData.append("reunion_dinner_guest", form.querySelector('[name="reunion_dinner_guest"]').value);
+  formData.set("event8_classmate", form.querySelector('[name="event8_classmate"]').value);
+  formData.set("event8_guest", form.querySelector('[name="event8_guest"]').value);
+  formData.set("event9_classmate", form.querySelector('[name="event9_classmate"]').value);
+  formData.set("event9_guest", form.querySelector('[name="event9_guest"]').value);
+  formData.set("event10_classmate", form.querySelector('[name="event10_classmate"]').value);
+  formData.set("event10_guest", form.querySelector('[name="event10_guest"]').value);
 
   const registrationFeeField = form.querySelector('[name="RegistrationFee"]');
   if (registrationFeeField) {
