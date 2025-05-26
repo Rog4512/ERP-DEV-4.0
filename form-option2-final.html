@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.0.3 | Date: 2025-05-20 -->
+<!-- Version: 4.0.7 | Date: 2025-05-25 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -198,7 +198,7 @@
     <tr><td>Saturday Breakfast</td>
       <td><select name="saturday_breakfast_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="saturday_breakfast_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
-    //Golf notes
+    <!-- Golf notes -->
     <tr><td>Saturday Golf</td>
       <td><select name="saturday_golf_classmate"><option></option><option>Y</option><option>N</option></select></td>
       <td><select name="saturday_golf_guest"><option></option><option>Y</option><option>N</option></select></td></tr>
@@ -207,7 +207,7 @@
       * The course does not offer club rentals and does not allow sharing. The clubhouse suggests www.shipsticks.com if you need to ship your clubs.
       </td>
     </tr>   
-       <div style="margin-left: 25px; color: #b30000; font-size: 0.9em; font-style: italic;">
+       <div style="margin-left: 0.25px; color: #b30000; font-size: 0.9em; font-style: italic;">
 </div>
     <tr><td>Reunion Dinner</td>
       <td><select name="reunion_dinner_classmate"><option></option><option>Y</option><option>N</option></select></td>
@@ -291,10 +291,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector('[name="guest_name"]').addEventListener('input', updateSummary);
   document.querySelector('[name="legacy_fund"]').addEventListener('input', updateSummary);
 });
-
+<script>
 function submitForm(event) {
+  console.log("🔁 submitForm triggered");
   event.preventDefault();
   updateSummary();
+  console.log("📊 Summary updated, preparing FormData...");
 
   const form = document.getElementById("reunionForm");
   const emailInput = document.getElementById("email");
