@@ -299,8 +299,9 @@ function closeLegacyPopup() {
   document.getElementById("overlay").style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateSummary();
+  document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector('[name="registration_fee"]').value = document.getElementById('currentReunionFee').value;
+  updateSummary(); 
 
   document.querySelector('[name="guest_name"]').addEventListener('input', updateSummary);
   document.querySelector('[name="legacy_fund"]').addEventListener('input', updateSummary);
