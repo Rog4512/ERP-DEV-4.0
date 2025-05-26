@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.0 | Date: 2025-05-26 -->
+<!-- Version: 4.1.1 | Date: 2025-05-26 -->
 <!-- Standardized field names, added support for event_8 through event_10, improved sms_opt_in handling -->
 <html lang="en">
 <head>
@@ -106,6 +106,12 @@
       color: #3c763d;
       padding: 25px;
     }
+    .event-note {
+    color: #b30000;
+    font-style: italic;
+    font-size: 0.9em;
+    padding-top: 4px;
+    }
   </style>
 </head>
 <body>
@@ -135,7 +141,7 @@
     <input type="checkbox" id="sms_opt_in" name="sms_opt_in" value="Y" style="margin-right: 10px; margin-top: 3px;">
     Yes, I’d like to receive important text updates about the reunion (preferred over email).
   </label>
-  <div style="font-size: 0.85em; color: #333; margin-left: 25px; margin-top: 4px;">
+  <td colspan="3" class="event-note">
     By opting in, you agree to receive time-sensitive reunion reminders and updates via SMS. Standard message and data rates may apply.
   </div>
 </div>
@@ -205,7 +211,7 @@
       * The course does not offer club rentals and does not allow sharing. The clubhouse suggests www.shipsticks.com if you need to ship your clubs.
       </td>
     </tr>   
-       <div style="margin-left: 0.25px; color: #b30000; font-size: 0.9em; font-style: italic;">
+       <td colspan="3" class="event-note">
     </div>
     <tr><td>Reunion Dinner</td>
       <td><select name="reunion_dinner_classmate"><option></option><option>Y</option><option>N</option></select></td>
@@ -215,7 +221,7 @@
       * A cash bar will be available during the Saturday evening dinner. Drink responsibly and plan ahead for a safe ride home.
     </td>
     </tr>   
-    <div style="margin-left: 0.25px; color: #b30000; font-size: 0.9em; font-style: italic;">
+    <td colspan="3" class="event-note">
     </div>
     <tr><td>Event 8</td>
       <td><select name="event_8_classmate"><option></option><option>Y</option><option>N</option></select></td>
