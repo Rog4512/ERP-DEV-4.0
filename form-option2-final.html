@@ -395,12 +395,21 @@ function submitForm(event) {
     formData.append("TotalDue", totalDueField.value);
   }
 
+  for (let [key, value] of formData.entries()) {
+  console.log(`${key}: ${value}`);
+  }
+  
+  console.log("✅ Reached fetch section, submitting data...");
+
   fetch("https://script.google.com/macros/s/AKfycbydKZYUTqqAftv4DUQi7vj5Ic33gz3KHNGFQEJvNZuVpTfmaurBBs_IuA_WYFbOMQIC1Q/exec", {
     method: "POST",
     body: formData,
     mode: "cors"
   })
   .then(() => {
+
+    console.log("✅ Fetch returned success, building URL redirect...");
+    
     let params = new URLSearchParams();
     formData.forEach((value, key) => {
       params.append(key, value);
@@ -408,8 +417,10 @@ function submitForm(event) {
     window.location.href = "thank-you-option2.html?" + params.toString();
   })
   .catch((error) => {
-    alert("Something went wrong. Please try again later.");
-    console.error("Submission error:", error);
+
+  console.error("Submission error:", error);
+     
+  alert("Something went wrong. Please try again later.");
   });
 }
 </script>
