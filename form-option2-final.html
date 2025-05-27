@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.6 | Date: 2025-05-26 -->
+<!-- Version: 4.1.6a | Date: 2025-05-26 -->
 <!-- Record current execution step and update visible debug tracker if element exists -->
 <html lang="en">
-let debugTrail = 0;
+<script>
+  let debugTrail = 0;
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("debugPopup").style.display = "block";
+  });
+</script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -175,7 +180,7 @@ let debugTrail = 0;
     smsOptIn.addEventListener("change", updateOtherPhoneLabel);
   });
 </script>
-    
+    let debugTrail = 0;
       <label>Preferred classmate name for Nametag:</label><input type="text" name="classmate_nametag" />
       <label>Preferred spouse/guest name for Nametag:</label><input type="text" name="guest_nametag" />
       <label>Notes:</label><textarea name="notes" rows="3"></textarea>
@@ -335,7 +340,7 @@ function closeLegacyPopup() {
   updateSummary();
   console.log("📊 Summary updated, preparing FormData...");
 
-debugTrail = 338;
+debugTrail = 343;
 const debugBox = document.getElementById("debug-step");
 if (debugBox) debugBox.innerText = debugTrail;
 
@@ -348,7 +353,7 @@ if (debugBox) debugBox.innerText = debugTrail;
   const formData = new FormData(form);
   const emailVal = emailInput.value.trim();
   
-debugTrail = 351;
+debugTrail = 356;
 const debugBox = document.getElementById("debug-step");
 if (debugBox) debugBox.innerText = debugTrail;
 
@@ -364,7 +369,7 @@ if (debugBox) debugBox.innerText = debugTrail;
     emailWarning.style.display = "none";
   }
 
-debugTrail = 367;
+debugTrail = 372;
 const debugBox = document.getElementById("debug-step");
 if (debugBox) debugBox.innerText = debugTrail;
   
@@ -401,7 +406,7 @@ if (debugBox) debugBox.innerText = debugTrail;
   formData.append("event10_classmate", form.querySelector('[name="event10_classmate"]').value);
   formData.append("event10_guest", form.querySelector('[name="event10_guest"]').value);
 
-debugTrail = 404;
+debugTrail = 409;
 const debugBox = document.getElementById("debug-step");
 if (debugBox) debugBox.innerText = debugTrail;
 
@@ -426,7 +431,7 @@ if (debugBox) debugBox.innerText = debugTrail;
   
   console.log("✅ Reached fetch section, submitting data...");
 
-debugTrail = 429;
+debugTrail = 434;
 const debugBox = document.getElementById("debug-step");
 if (debugBox) debugBox.innerText = debugTrail;
 
