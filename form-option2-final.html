@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Version: 4.1.6a | Date: 2025-05-26 -->
+<!-- Version: 4.1.6b | Date: 2025-05-26 -->
 <!-- Record current execution step and update visible debug tracker if element exists -->
 <html lang="en">
 <script>
@@ -303,12 +303,13 @@ function updateSummary() {
   document.getElementById('summary-legacy').innerText = `$${legacyFund.toFixed(2)}`;
   document.getElementById('summary-total').innerText = `$${totalDue.toFixed(2)}`;
   document.getElementById('hiddenTotalDue').value = totalDue.toFixed(2);
-    // Debug Mode updates
+
+  // Debug Mode updates
   document.getElementById('debug-attendees').innerText = attendees;
   document.getElementById('debug-fee').innerText = `$${feePerPerson.toFixed(2)}`;
   document.getElementById('debug-legacy').innerText = `$${legacyFund.toFixed(2)}`;
-  document.getElementById('debug-reunion').innerText = `$${reunionFee.toFixed
-}
+  document.getElementById('debug-reunion').innerText = `$${reunionFee.toFixed(2)}`;
+}  
 
 function showLegacyPopup() {
   document.getElementById("legacyPopup").style.display = "block";
